@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 
-const sortedArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-const _ = require('lodash');
+const sortedArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const _ = require('lodash')
 
 const getShuffledArr = () => {
-  const newArr = sortedArray.slice();
+  const newArr = sortedArray.slice()
   for (let i = newArr.length - 1; i > 0; i--) {
     const rand = Math.floor(Math.random() * (i + 1));
-    [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+    [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]]
   }
-
   let newPuzzle = newArr
   return newPuzzle
-};
+}
 
-// this gives four arrays of the shuffled one
 const newPuzzleArr = (newPuzzle) => {
   let puzzleArr = _.chunk(newPuzzle, 4)
-  console.log("getNewArray", puzzleArr);
+  console.log("getNewArray", puzzleArr)
   return puzzleArr
 }
 
@@ -46,7 +44,7 @@ const isSolvable = (puzzle) => {
   } else {
     return (getInversionCount(puzzle) % 2 === 0)
   }
-};
+}
 isSolvable()
 
 const getPuzzle = () => {
@@ -91,7 +89,7 @@ export const App = () => {
       <div className="background">
         <div className="board">
           {puzzle.map((item, i) => (
-            <div key={i} className={item ? "item" : "item hidden"}>
+            <div className={item ? "item" : "item hidden"}>
               {/* //onClick should move the Tile if its next to 0 */}
               <button key={item} className="tile" onClick={() => { 'moveTile' }}>{item}</button>
             </div>
